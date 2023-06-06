@@ -3,7 +3,7 @@ Test file for testing all data export functionality, including:
   - Exporting sample data, ensure that JSON file is created
   - Exports correct data, ensure matches input sample data
 */
-import request from 'supertest';
+const request = require('supertest');
 const server = 'http://localhost:3000';
 
 describe('export test suite', () => {
@@ -21,6 +21,13 @@ describe('export test suite', () => {
   // IT - will send request to /export endpoint, passing in sample data
   it('exports correct data, ensuring export matches input sample data', () => {
     // EXPECT - will expect output to match input sample data, comparing input columns/keys in the JSON file
-    
+    return request(server)
+    .get('/export')
+    .expect(200)
+    .expect('Content-Type', /json/)
+
+    // iterate through response, compare each key to input columns 
+      // expect key to equal column
+
   });
 })
