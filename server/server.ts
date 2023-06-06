@@ -1,7 +1,7 @@
-import path from 'path'
-import cors from 'cors'
-import dotenv from 'dotenv'
-import cookieParser from 'cookie-parser'
+import path from 'path';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 import express, { Request, Response, NextFunction, ErrorRequestHandler } from 'express';
 import router from './routers/router';
 
