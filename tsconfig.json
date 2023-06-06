@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "outDir": "./dist/",
+      "noImplicitAny": true,
+      "module": "CommonJS",
+      "target": "ES2016",
+      "jsx": "react",
+      "allowJs": true,
+      "moduleResolution": "node",
+      "esModuleInterop": true
+    },
+    "include": ["client/**/*", "server/**/*"]
+}
+  
