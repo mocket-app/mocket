@@ -1,26 +1,26 @@
- [
+[
   {
-    "type": "Character Sequence",
-    "group": "advanced"
+    type: "Character Sequence",
+    group: "Advanced"
   },
   {
-    "type": "Digit Sequence",
-    "group": "advanced"
+    type: "Digit Sequence",
+    group: "Advanced"
   },
   {
-    "type": "Color",
-    "group": "basic"
+    type: "Color",
+    group: "Basic"
   },
   {
-    "type": "Boolean",
-    "group": "basic"
+    type: "Boolean",
+    group: "Basic"
   },
   {
-    "type": "Car Make",
-    "group": "cars"
+    type: "Car Make",
+    group: "Cars"
   },
   {
-    "type": "Car Model",
-    "group": "cars"
+    type: "Car Model",
+    group: "Cars"
   }
 ]

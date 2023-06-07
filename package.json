@@ -28,6 +28,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-oauth": "^0.0.1",
+    "sass": "^1.62.1",
     "sql": "^0.78.0",
     "stream-browserify": "^3.0.0",
     "supertest": "^6.3.3",
