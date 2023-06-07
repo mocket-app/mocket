@@ -60,6 +60,12 @@ module.exports = {
     fallback: {
       fs: false,
     },
+    // resolve: {
+    //   fallback: {
+    //     os: require.resolve('os-browserify/browser')
+    //   }
+    // }
+    
   }
 
 };
