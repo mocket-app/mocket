@@ -1,11 +1,11 @@
 import express from 'express';
-import authRouter from './sessionRouter';
+import sessionRouter from './sessionRouter';
 import exportRouter from './exportRouter';
 import mockRouter from './mockRouter';
 const router = express.Router();
 
-// auth router
-router.use('/auth', authRouter);
+// session router
+router.use('/session', sessionRouter);
 
 // export router
 router.use('/export', exportRouter);

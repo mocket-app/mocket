@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, '../client')));
 
 //define route handlers
-app.use('/', router);
+app.use('/api', router);
 
 // catch-all route handler for any requests to an unknown route
 app.use((req: Request, res: Response) => res.status(404).send('This is not the page you\'re looking for...'));
