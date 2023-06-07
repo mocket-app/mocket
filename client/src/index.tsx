@@ -11,7 +11,7 @@ const clientID: string = "";
 root.render(
   <GoogleOAuthProvider clientId={clientID}>
     <BrowserRouter>
-      <App/>
+      <App />
     </BrowserRouter>
   </GoogleOAuthProvider>
 );
