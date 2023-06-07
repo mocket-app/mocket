@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Box, TextField, Select, MenuItem, InputLabel, FormControl, FormHelperText } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material/Select'
+// import data from ... I dont know how to import from another file
 
 const data = [
   {
@@ -29,27 +30,48 @@ const data = [
   }
 ]
 
-function FormInput() {
+interface FormInputProps {
+  index: number
+  fieldData: Object[]
+  setFieldData: (fieldData: Object[]) => void
+}
+
+function FormInput({index, fieldData, setFieldData}: FormInputProps) {
   const [name, setName] = useState('');
   const [group, setGroup] = useState('');
   const [type, setType] = useState('');
 
   const typeComponents: any = [];
 
+  // update array of field data
+  // const updateFieldData = (index: number) => {
+  //   const copy = [...fieldData]
+  //   const obj = { name, type }
+  //   copy.splice(index, 1, obj)
+  //   setFieldData(copy)
+  // }
+
+  useEffect(() => {
+    const copy = [...fieldData]
+    const obj = { name, type }
+    copy.splice(index, 1, obj)
+    setFieldData(copy)
+  }, [name, type])
+
+
+
+
   const getTypes = (group: string, data: any): any => {
-    console.log('inside getTypes');
     const types: string[] = [];
     data.forEach((el: any) => {
       if (el.group === group) {
         types.push(el.type)
       }
     })
-    console.log('types', types);
     types.forEach((el) => {
       console.log('el', el);
       typeComponents.push(<MenuItem value={el} >{el}</MenuItem>)
     })
-    console.log('components', typeComponents);
   }
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -59,7 +81,7 @@ function FormInput() {
   useEffect(() => {
     getTypes(group, data);
     console.log(group, type);
-  }, [group, type])
+  }, [group, type, name])
 
   return (
     <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -75,9 +97,6 @@ function FormInput() {
             label="Group"
             onChange={(e) => setGroup(e.target.value)}
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
             <MenuItem value='Basic'>Basic</MenuItem>
             <MenuItem value='Advanced'>Advanced</MenuItem>
             <MenuItem value='Cars'>Cars</MenuItem>
@@ -91,11 +110,8 @@ function FormInput() {
             id="demo-simple-select-helper"
             value={type}
             label="Type"
-            onChange={handleChange}
+            onChange={(e) => setType(e.target.value)}
           >
-            <MenuItem value="">
-              <em>None</em>
-            </MenuItem>
             {typeComponents}
           </Select>
         </FormControl>

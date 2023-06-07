@@ -3,7 +3,35 @@ import { Box, Button, Typography } from '@mui/material';
 import LoadingButton from '@mui/lab/LoadingButton';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 
-const Preview = () => {
+interface PreviewProps {
+  result: any
+}
+
+const jsonObj: any = [
+    {
+        "stocks": "World Point Terminals, LP",
+        "username": "glarner0"
+    },
+    {
+        "stocks": "MediWound Ltd.",
+        "username": "pmollen1"
+    },
+    {
+        "stocks": "Old Second Bancorp, Inc.",
+        "username": "dhouseman2"
+    },
+    {
+        "stocks": "CorEnergy Infrastructure Trust, Inc.",
+        "username": "lcoils3"
+    },
+    {
+        "stocks": "Aptose Biosciences, Inc.",
+        "username": "bkaiser4"
+    },
+  ]
+
+
+const Preview = ({result}: PreviewProps) => {
   const [ loading, setLoading ] = useState(false)
 
   const handleLoading = () => {
@@ -19,7 +47,6 @@ const Preview = () => {
         sx={{
           flexGrow: 2,
           margin: '20px',
-          backgroundColor: 'rgba(255, 255, 255, 0.12)'
         }}>
         <Typography variant='h2'>Hello World</Typography>
         <Box
@@ -30,7 +57,10 @@ const Preview = () => {
             border: '5px solid lightgrey',
             borderRadius: '10px',
           }}>
-          Preview Window Here
+          <pre style={{ marginLeft: '30px' }}>
+            {result && JSON.stringify(result, null, 2)}
+            {!result && JSON.stringify(jsonObj, null, 2)}
+          </pre>
         </Box>
         <LoadingButton
           size='large'
