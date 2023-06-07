@@ -6,8 +6,9 @@ router.post('/login', sessionController.createUser, sessionController.setCookie,
   res.status(200).json(res.locals.user);
 })
 
-router.post('/checkLogin', sessionController.checkLogin, (req: Request, res: Response) => {
-  res.status(200).json(res.locals.user);
+router.get('/checkLogin', sessionController.checkLogin, (req: Request, res: Response) => {
+  const resObj = { isLoggedIn: res.locals.isLoggedIn }
+  res.status(200).json(resObj);
 });
 
 

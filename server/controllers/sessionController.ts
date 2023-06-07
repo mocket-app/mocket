@@ -52,8 +52,45 @@ const sessionController = {
       secure: true 
     });
     return next();
+  },
+
+  checkLogin: async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+      // see if request contains cookie with session id
+      const { session } = req.cookies;
+      if (session) {
+        
+        // check SQL DB to ensure a record exists with and id that matches the value of session cookie
+        const values = [ session ];
+        const query = `SELECT * FROM users WHERE id = $1`;
+        const user = await db(query, values);
+        // console.log('checked login, user is, ', user);
+
+        // compare session value to id in DB
+        if (user.rows[0] !== undefined && user.rows[0].id === Number(session)) {
+          // user session still valid, so set res.locals.isLoggedIn to true
+          res.locals.isLoggedIn = true;
+          res.locals.user = user.rows[0];
+          return next();
+        } else {
+          // user session invalid, so set res.locals.isLoggedIn to false
+          res.locals.isLoggedIn = false;
+          return next();
+        }
+      } else {
+        // no session cookie, so set res.locals.isLoggedIn to false
+        res.locals.isLoggedIn = false;
+        return next();
+      }
+
+    } catch (err: any | unknown) {
+      return next({
+        log: `Error in sessionController.checkLogin: ${err}`,
+        message: { err: 'Error confirming an existing session at login' },
+      });
+    }
   }
-  
+
 }
 
 export default sessionController;
