@@ -7,7 +7,7 @@ const sessionController = {
   createUser: async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       const { given_name, email } = req.body;
-      const values = [ email ];
+      const values: any[] = [ email ];
       const query = `SELECT * FROM users WHERE email = $1`;
   
       const user = await db(query, values);
