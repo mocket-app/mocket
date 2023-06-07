@@ -3,9 +3,31 @@ Test file for testing all data export functionality, including:
   - Exporting sample data, ensure that JSON file is created
   - Exports correct data, ensure matches input sample data
 */
+const request = require('supertest');
+const server = 'http://localhost:3000';
 
-describe('what is 2 + 2', () => {
-  it('returns 4', () => {
-    expect(2+2).toEqual(3)
-  })
+describe('export test suite', () => {
+  
+  // IT - will send request to /export endpoint, passing in sample data
+  it('exports sample data as JSON file', () => {
+    
+    // EXPECT - will expect output to be a JSON file
+    return request(server)
+      .get('/export')
+      .expect(200)
+      .expect('Content-Type', /json/)
+  });
+
+  // IT - will send request to /export endpoint, passing in sample data
+  it('exports correct data, ensuring export matches input sample data', () => {
+    // EXPECT - will expect output to match input sample data, comparing input columns/keys in the JSON file
+    return request(server)
+    .get('/export')
+    .expect(200)
+    .expect('Content-Type', /json/)
+
+    // iterate through response, compare each key to input columns 
+      // expect key to equal column
+
+  });
 })
