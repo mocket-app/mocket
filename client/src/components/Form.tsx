@@ -41,10 +41,10 @@ const Form = ({ fieldData, setFieldData, generateData }: FormProps) => {
   const [ fields, setFields ] = useState<Array<React.ReactElement>>([])
   const [ loading, setLoading ] = useState(false)
   const [ count, setCount ] = useState(null)
+  const [ index, setIndex ] = useState(0);
   
-  let index = 0
+  // let index = 0
   const listCounts: Array<number> = [...Array.from({length: 20}, (_, i) => (i + 1) * 5)]
-  console.log('listCounts', listCounts)
 
   const handleLoading = () => {
     setLoading(true)
@@ -55,15 +55,24 @@ const Form = ({ fieldData, setFieldData, generateData }: FormProps) => {
   }
 
   const addFormInput = () => {
-    setFields(currentFields => [...currentFields, <FormInput index={index++} fieldData={fieldData} setFieldData={setFieldData}/>])
-    fieldData.push({ name: '', type: ''})
+    console.log('index', index)
+    setFields(currentFields => [...currentFields, <FormInput index={index} fieldData={fieldData} setFieldData={setFieldData}/>])
+    setIndex(index+1);
+    console.log('fieldData', fieldData)
+    const fieldDataCopy = [...fieldData];
+    fieldDataCopy.push({ name: '', type: ''});
+    console.log('fieldDataCopy', fieldDataCopy)
+    setFieldData(fieldDataCopy);
   }
 
   useEffect(() => {
     const newForms: React.ReactElement[] = []
-    for (let i = index; i < 3; i++) {
-      newForms.push(<FormInput index={index++} fieldData={fieldData} setFieldData={setFieldData} />)
-      fieldData.push({ name: '', type: ''})
+    for (let i = index; i < 1; i++) {
+      newForms.push(<FormInput index={index} fieldData={fieldData} setFieldData={setFieldData} />)
+      setIndex(index+1);
+      const fieldDataCopy = [...fieldData];
+      fieldDataCopy.push({ name: '', type: ''});
+      setFieldData(fieldDataCopy);
     }
     setFields(newForms)
   }, [])
@@ -110,7 +119,7 @@ const Form = ({ fieldData, setFieldData, generateData }: FormProps) => {
               }
             }}
           >Add Field</Button>
-          <TextField onChange={(e) => setCount(e.target.value)}/>
+          {/* <TextField onChange={(e) => setCount(e.target.value)}/> */}
           <LoadingButton
             size='large'
             color="secondary"

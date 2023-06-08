@@ -48,7 +48,7 @@ const Preview = ({result}: PreviewProps) => {
           flexGrow: 2,
           margin: '20px',
         }}>
-        <Typography variant='h2'>Hello World</Typography>
+        <Typography variant='h2'>Preview</Typography>
         <Box
           sx={{
             flexGrow: 3,
