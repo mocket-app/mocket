@@ -1,7 +1,7 @@
 import express, { Request, Response, NextFunction, ErrorRequestHandler } from 'express';
 import fetch from "node-fetch";
 
-let target_url: string = 'https://api.mockaroo.com/api/generate.json?key=02d1cc90&count=';
+const target_url: string = 'https://api.mockaroo.com/api/generate.json?key=02d1cc90&count=';
 /* sample endpoint data:
 REQ BODY: 
   [
@@ -51,12 +51,12 @@ const mockController = {
     try{
       const { data, count } = req.body;
       
-      target_url = target_url.concat(count);
-
-      console.log(`request recieved, making call to mockaroo API for a count of ${count} with data: `, data);
+      const API_URL = target_url.concat(count);
       
+      console.log(`request recieved, making call to mockaroo API for a count of ${count} with data: `, data);
+      console.log('target url is ', API_URL);
       // fetch to mockaroo API
-      const mockarooRes = await fetch(target_url, {
+      const mockarooRes = await fetch(API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

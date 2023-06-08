@@ -52,9 +52,12 @@ function FormInput({index, fieldData, setFieldData}: FormInputProps) {
   // }
 
   useEffect(() => {
+    // console.log('fieldData', fieldData)
     const copy = [...fieldData]
     const obj = { name, type }
+    // console.log('index', index)
     copy.splice(index, 1, obj)
+    // console.log('copy', copy)
     setFieldData(copy)
   }, [name, type])
 
@@ -69,7 +72,7 @@ function FormInput({index, fieldData, setFieldData}: FormInputProps) {
       }
     })
     types.forEach((el) => {
-      console.log('el', el);
+      // console.log('el', el);
       typeComponents.push(<MenuItem value={el} >{el}</MenuItem>)
     })
   }
@@ -80,7 +83,7 @@ function FormInput({index, fieldData, setFieldData}: FormInputProps) {
 
   useEffect(() => {
     getTypes(group, data);
-    console.log(group, type);
+    // console.log(group, type);
   }, [group, type, name])
 
   return (
